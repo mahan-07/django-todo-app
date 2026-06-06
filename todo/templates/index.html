@@ -1,0 +1,57 @@
+{% extends "_base.html" %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+<div class="container">
+
+    <section class="task-box">
+        <div class="task-header">
+            <h2>Active Tasks</h2>
+        </div>
+
+        <div class="task-input">
+            <input type="text" placeholder="Enter your task">
+            <button>Add</button>
+        </div>
+
+        <div class="task-item">
+            <input type="checkbox">
+            <span>Learn Django ORM</span>
+
+            <div class="actions">
+                <a href="#">✏️</a>
+                <a href="#">❌</a>
+            </div>
+        </div>
+
+        <div class="task-item">
+            <input type="checkbox">
+            <span>Learn OOP concepts in Python</span>
+
+            <div class="actions">
+                <a href="#">✏️</a>
+                <a href="#">❌</a>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="completed-box">
+        <div class="completed-header">
+            <h2>Completed Tasks</h2>
+        </div>
+
+        <div class="completed-actions">
+            <button class="clear-btn">Clear All Completed Tasks</button>
+        </div>
+
+        <div class="completed-item">
+            <input type="checkbox" checked>
+            <span>Water the Plants</span>
+        </div>
+    </section>
+
+</div>
+
+{% endblock content %}
