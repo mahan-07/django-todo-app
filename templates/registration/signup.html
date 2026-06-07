@@ -1,0 +1,23 @@
+{% extends "_base.html" %}
+{% block title %}Sign up{% endblock title %} 
+{% block content %}
+
+<div class="col-8 mx-3" dir='ltr'>
+    <div class="container mt-5 p-4 shadow-lg">
+        <form method="post">
+            {% csrf_token %}
+            <table id="table">
+                {{ form.as_table }}
+            </table>
+
+            <input type="submit" id="save-btn" value="Sign up">
+        </form>
+        <a href="{% url 'login' %}">Already have an Account</a>
+    </div>
+</div>
+
+
+{% endblock content %}
+
+
+

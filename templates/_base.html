@@ -7,6 +7,7 @@
     <link rel="icon" href="{% static 'img/icon.svg' %}" type="image/svg+xml">
     <title>{% block title %}{% endblock title %}</title>
     <link rel="stylesheet" href="{% static 'css/indexStyle.css' %}">
+    <link rel="stylesheet" href="{% static 'css/formStyle.css' %}">
     <style>
         * {
             margin: 0;
@@ -103,16 +104,22 @@
         </div>
 
         <ul class="nav-menu" id="nav-menu">
+            {% if user.is_authenticated %}
             <li><a href="#">About Us</a></li>
             <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="#"><img width="40px" height="auto" src="{% static 'img/user.svg' %}" alt="User"></a></li>
+            <li><a href="{% url "account_data" %}"><img width="40px" height="auto" src="{% static 'img/user2.svg' %}" alt="User"></a></li>
+            {% else %}
+            <li><a href="{% url "signup" %}">Login/Signup</a></li>
+            {% endif %}
         </ul>
     </nav>
 
     <!-- محتوای صفحه -->
+    
     <div >
     {% block content %}{% endblock content %}
     </div>
+
 
 
     <script>

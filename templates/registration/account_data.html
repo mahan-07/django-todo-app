@@ -1,0 +1,28 @@
+{% extends "_base.html" %}
+
+{% block title %}Account Data{% endblock title %} 
+{% block content %}
+
+<div class="col-8 mx-3" dir='ltr'>
+    <div class="container mt-5 p-4 shadow-lg">
+        <form method="post">
+            {% csrf_token %}
+            <table id="table">
+                {{ form.as_table }}
+            </table>
+
+            <input type="submit" id="save-btn" value="Save">
+        </form>
+
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Logout">
+        </form>
+    </div>
+</div>
+
+
+{% endblock content %}
+
+
+

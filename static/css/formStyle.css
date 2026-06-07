@@ -1,0 +1,105 @@
+#table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: "Segoe UI", sans-serif;
+    background: linear-gradient(135deg, #2d0b45, #4b1d74);
+    color: #f8f5ff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(88, 28, 135, 0.35);
+}
+
+/* Form controls inside the table */
+#table input,
+#table select,
+#table textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 8px;
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: all 0.25s ease;
+}
+
+/* Placeholder color */
+#table input::placeholder,
+#table textarea::placeholder {
+    color: rgba(255,255,255,0.6);
+}
+
+/* Focus effect */
+#table input:focus,
+#table select:focus,
+#table textarea:focus {
+    outline: none;
+    border-color: #c084fc;
+    background: rgba(255,255,255,0.12);
+    box-shadow: 0 0 0 3px rgba(192,132,252,0.25);
+}
+
+/* Dropdown options */
+#table select option {
+    background: #3b1360;
+    color: white;
+}
+
+/* Checkbox & radio */
+#table input[type="checkbox"],
+#table input[type="radio"] {
+    width: auto;
+    accent-color: #a855f7;
+}
+
+#table input:-webkit-autofill,
+#table input:-webkit-autofill:hover,
+#table input:-webkit-autofill:focus,
+#table textarea:-webkit-autofill,
+#table select:-webkit-autofill {
+    -webkit-text-fill-color: #fff;
+    -webkit-box-shadow: 0 0 0 1000px rgba(255,255,255,0.08) inset;
+    box-shadow: 0 0 0 1000px rgba(255,255,255,0.08) inset;
+    transition: background-color 9999s ease-in-out 0s;
+    border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* Save button */
+.save-btn,
+button[type="submit"],
+input[type="submit"] {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #a855f7, #7c3aed);
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 16px;
+    box-shadow: 0 6px 18px rgba(168, 85, 247, 0.35);
+    transition: all 0.25s ease;
+}
+
+.save-btn:hover,
+button[type="submit"]:hover,
+input[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(168, 85, 247, 0.5);
+}
+
+.save-btn:active,
+button[type="submit"]:active,
+input[type="submit"]:active {
+    transform: translateY(0);
+}
+
+.save-btn:focus,
+button[type="submit"]:focus,
+input[type="submit"]:focus {
+    outline: none;
+    box-shadow:
+        0 0 0 3px rgba(192, 132, 252, 0.3),
+        0 6px 18px rgba(168, 85, 247, 0.35);
+}
