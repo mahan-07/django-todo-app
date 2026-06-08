@@ -142,10 +142,12 @@
 }
 
 .task-input button {
-    background: #2cbf6c;
+    background: #a301d9;
+    font-size: 0.9rem;
     color: white;
     border: none;
-    padding: 0 25px;
+    padding: 20px;
+    margin-left: 5px;
     border-radius: 20px;
     cursor: pointer;
 }

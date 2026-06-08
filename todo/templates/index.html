@@ -1,10 +1,11 @@
 {% extends "_base.html" %}
-
+{% load static %} 
 {% block title %}Home{% endblock title %}
 
 {% block content %}
-<div class="container">
 
+<div class="container">
+    
     <section class="task-box">
         <div class="task-header">
             <h2>Active Tasks</h2>
@@ -12,31 +13,23 @@
 
         <div class="task-input">
             <input type="text" placeholder="Enter your task">
-            <button>Add</button>
+            <button class="task-input">Add</button>
         </div>
-
+        {% for todo in todos %}
         <div class="task-item">
             <input type="checkbox">
-            <span>Learn Django ORM</span>
+            <span>{{ todo.title }}</span>
 
             <div class="actions">
-                <a href="#">✏️</a>
-                <a href="#">❌</a>
+                <a href="#"><img width="27" height="35" src="{% static 'img/edit.svg' %}" alt="✏️"></a>
+                <a href="#"><img width="35" src="{% static 'img/delete.svg' %}" alt="❌"></a>
             </div>
         </div>
-
-        <div class="task-item">
-            <input type="checkbox">
-            <span>Learn OOP concepts in Python</span>
-
-            <div class="actions">
-                <a href="#">✏️</a>
-                <a href="#">❌</a>
-            </div>
-        </div>
+        {% endfor %}
     </section>
 
 
+<!-- 
     <section class="completed-box">
         <div class="completed-header">
             <h2>Completed Tasks</h2>
@@ -51,6 +44,7 @@
             <span>Water the Plants</span>
         </div>
     </section>
+ -->
 
 </div>
 
