@@ -11,10 +11,13 @@
             <h2>Active Tasks</h2>
         </div>
 
-        <div class="task-input">
-            <input type="text" placeholder="Enter your task">
-            <button class="task-input">Add</button>
-        </div>
+        <form method="post">
+            {% csrf_token %}
+            <div class="task-input">
+                <input type="text" name="title" placeholder="Enter your task">
+                <button type="submit" class="task-input">Add</button>
+            </div>
+            </form>
         {% for todo in todos %}
         <div class="task-item">
             <input type="checkbox">
