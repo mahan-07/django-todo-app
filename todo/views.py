@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Todo
-
+from django.http import JsonResponse
 from django.utils.html import escape
 
 # Create your views here.
@@ -20,3 +20,14 @@ def home(request):
     context = {"todos": todos}
     return render(request, 'index.html', context)
 
+def taggle_soft_delete(request):
+    if request.method != "POST":
+        return JsonResponse({"error":"POST required"}, status=405)
+    
+    todo_id = request.POST.get('todo_id')
+    todo = get_object_or_404(Todo, id=todo_id)
+
+    todo.is_soft_deleted = True
+    todo.save()
+    return JsonResponse({"status":"ok"})
+    

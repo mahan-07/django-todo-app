@@ -24,8 +24,8 @@
             <span>{{ todo.title }}</span>
 
             <div class="actions">
-                <a href="#"><img width="27" height="35" src="{% static 'img/edit.svg' %}" alt="✏️"></a>
-                <a href="#"><img width="35" src="{% static 'img/delete.svg' %}" alt="❌"></a>
+                <a href="#" class="edit-btn"><img width="27" height="35" src="{% static 'img/edit.svg' %}" alt="✏️"></a>
+                <a href="#" data-todo-id="{{ todo.id }}" data-taggle-soft-delete-url={% url "taggle_soft_delete" %} class="delete-btn"><img width="35" src="{% static 'img/delete.svg' %}" alt="❌"></a>
             </div>
         </div>
         {% endfor %}
