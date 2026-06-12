@@ -1,0 +1,26 @@
+{% extends "_base.html" %}
+{% load static %} 
+{% block title %}History{% endblock title %} 
+{% block content %}
+
+    <div class="container">
+        <form method="post" id="clearForm">
+        {% csrf_token %}
+        <button type="submit">Clear all</button>
+        </form>
+        {% for todo in todos %}
+            <div class="task-item">
+                <span title="{{ todo.description }}">{{ todo.title }}</span>
+
+                <div class="actions">
+                    <a href="#" class="delete-btn" data-todo-id="{{ todo.id }}" data-taggle-delete-url={% url "taggle_delete" %}><img width="35" src="{% static 'img/delete.svg' %}" alt="❌"></a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock content %}
+
+{% block scripts %}
+    <script src="{% static 'js/historyjs.js' %}"></script>
+{% endblock %}

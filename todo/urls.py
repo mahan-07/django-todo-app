@@ -4,5 +4,7 @@ from . import views
 urlpatterns = [
     path('', views.home, name='home'),
     path('taggle_soft_delete', views.taggle_soft_delete, name='taggle_soft_delete'),
-    path('edit/<int:pk>/', views.edit, name='edit')
+    path('taggle_delete', views.taggle_delete, name='taggle_delete'),
+    path('edit/<int:pk>/', views.edit, name='edit'),
+    path('history/', views.history, name='history'),
 ]

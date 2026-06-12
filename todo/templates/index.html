@@ -25,7 +25,7 @@
 
             <div class="actions">
                 <a href="{% url 'edit' todo.pk %}" class="edit-btn"><img width="27" height="35" src="{% static 'img/edit.svg' %}" alt="✏️"></a>
-                <a href="#" data-todo-id="{{ todo.id }}" data-taggle-soft-delete-url={% url "taggle_soft_delete" %} class="delete-btn"><img width="35" src="{% static 'img/delete.svg' %}" alt="❌"></a>
+                <a href="#" data-todo-id="{{ todo.id }}" data-taggle-soft-delete-url={% url "taggle_soft_delete" %} class="soft-delete-btn"><img width="35" src="{% static 'img/delete.svg' %}" alt="❌"></a>
             </div>
         </div>
         {% endfor %}
@@ -52,3 +52,6 @@
 </div>
 
 {% endblock content %}
+{% block scripts %}
+    <script src="{% static 'js/indexjs.js' %}"></script>
+{% endblock %}

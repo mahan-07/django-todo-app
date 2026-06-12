@@ -9,7 +9,7 @@ from .forms import TodoEditForm
 @login_required
 def home(request):
     user = request.user
-    todos = user.todos.filter(is_soft_deleted=False).order_by('-datetime_created')
+    todos = user.todos.filter(is_soft_deleted=False, is_completed=False, user=user).order_by('-datetime_created')
     if request.method == "POST":
         title = request.POST.get('title').strip()
         title = escape(title)
@@ -25,7 +25,7 @@ def taggle_soft_delete(request):
         return JsonResponse({"error":"POST required"}, status=405)
     
     todo_id = request.POST.get('todo_id')
-    todo = get_object_or_404(Todo, id=todo_id)
+    todo = get_object_or_404(Todo, id=todo_id,user=request.user)
 
     todo.is_soft_deleted = True
     todo.save()
@@ -41,3 +41,24 @@ def edit(request, pk):
             return redirect("home")
     context = {'form':form}
     return render(request, "edit.html", context)
+
+def history(request):
+    user = request.user
+
+    #the todos that are completed they are also soft deleted too.
+    todos = user.todos.filter(is_soft_deleted=True).order_by('-datetime_modified')
+    if request.method == "POST":
+        todos.delete()
+
+    context = {"todos":todos}
+    return render(request, "history.html", context)
+
+
+def taggle_delete(request):
+    if request.method != "POST":
+        return JsonResponse({"error":"POST required"}, status=405)
+    
+    todo_id = request.POST.get('todo_id')
+    todo = get_object_or_404(Todo, id=todo_id,user=request.user)
+    todo.delete()
+    return JsonResponse({"status":"ok"})
