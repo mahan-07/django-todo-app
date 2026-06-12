@@ -1,0 +1,23 @@
+{% extends "_base.html" %}
+{% load static %} 
+{% block title %}Edit{% endblock title %} 
+{% block content %}
+
+<div class="col-8 mx-3" dir='ltr'>
+    <div class="container mt-5 p-4 shadow-lg">
+        <form method="post">
+            {% csrf_token %}
+            <table id="table">
+                {{ form.as_table }}
+            </table>
+
+            <input type="submit" id="save-btn" value="Save">
+        </form>
+    </div>
+</div>
+
+
+{% endblock content %}
+
+
+

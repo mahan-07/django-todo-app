@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Todo
 from django.http import JsonResponse
 from django.utils.html import escape
-
+from .forms import TodoEditForm
 # Create your views here.
 
 @login_required
@@ -30,4 +30,14 @@ def taggle_soft_delete(request):
     todo.is_soft_deleted = True
     todo.save()
     return JsonResponse({"status":"ok"})
-    
+
+def edit(request, pk):
+    todo = get_object_or_404(Todo, pk = pk)
+    form = TodoEditForm(instance=todo)
+    if request.method == "POST":
+        form = TodoEditForm(request.POST, instance=todo)
+        if form.is_valid():
+            form.save()
+            return redirect("home")
+    context = {'form':form}
+    return render(request, "edit.html", context)

@@ -9,6 +9,6 @@ document.querySelectorAll('.delete-btn').forEach(btn => {
         const taggle_soft_delete_url = this.dataset.taggleSoftDeleteUrl;
         const response = await fetch(taggle_soft_delete_url, {method:"POST", headers:{"X-CSRFToken":csrftoken}, body:new URLSearchParams({todo_id:todo_id})});
         const data = await response.json();
-        if(data.status == "ok"){this.closest(".task-item").remove();};
+        if(data.status === "ok"){this.closest(".task-item").remove();};
     })
 });
