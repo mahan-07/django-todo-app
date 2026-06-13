@@ -62,3 +62,17 @@ def taggle_delete(request):
     todo = get_object_or_404(Todo, id=todo_id,user=request.user)
     todo.delete()
     return JsonResponse({"status":"ok"})
+
+def taggle_todo_add(request):
+    if request.method != "POST":
+        return JsonResponse({"error":"POST required"}, status=405)
+    
+    user = request.user
+    title = (request.POST.get('title') or '').strip()
+    title = escape(title)
+    if title and len(title) <= 255:
+        todo = Todo.objects.create(user = user, title=title,)
+        return JsonResponse({"status": "ok","id": todo.id,"title": todo.title,"description":todo.description})
+    
+    return JsonResponse({"status":"errore"})
+

@@ -14,21 +14,23 @@
         <form method="post">
             {% csrf_token %}
             <div class="task-input">
-                <input type="text" name="title" placeholder="Enter your task">
-                <button type="submit" class="task-input">Add</button>
+                <input type="text" name="title" placeholder="Enter your task" class="todoinput">
+                <button type="submit" class="add-btn" data-taggle-todo-add-url="{% url 'taggle_todo_add' %}">Add</button>
             </div>
             </form>
+        <div class="task-list">
         {% for todo in todos %}
-        <div class="task-item">
-            <input type="checkbox">
-            <span title="{{ todo.description }}">{{ todo.title }}</span>
+            <div class="task-item">
+                <input type="checkbox" class="checkbox">
+                <span title="{{ todo.description }}">{{ todo.title }}</span>
 
-            <div class="actions">
-                <a href="{% url 'edit' todo.pk %}" class="edit-btn"><img width="27" height="35" src="{% static 'img/edit.svg' %}" alt="✏️"></a>
-                <a href="#" data-todo-id="{{ todo.id }}" data-taggle-soft-delete-url={% url "taggle_soft_delete" %} class="soft-delete-btn"><img width="35" src="{% static 'img/delete.svg' %}" alt="❌"></a>
+                <div class="actions">
+                    <a href="{% url 'edit' todo.pk %}" class="edit-btn"><img width="27" height="35" src="{% static 'img/edit.svg' %}" alt="✏️"></a>
+                    <a href="#" data-todo-id="{{ todo.id }}" data-taggle-soft-delete-url="{% url "taggle_soft_delete" %}" class="soft-delete-btn"><img width="35" src="{% static 'img/delete.svg' %}" alt="❌"></a>
+                </div>
             </div>
-        </div>
         {% endfor %}
+        </div>
     </section>
 
 
