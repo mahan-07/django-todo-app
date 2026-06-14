@@ -8,7 +8,13 @@
     
     <section class="task-box">
         <div class="task-header">
+
             <h2>Active Tasks</h2>
+
+            <button class="refresh-btn"
+            style="padding:3px; color:purple; font-family:'Courier New'; "
+            data-taggle-todo-completed-url="{% url "taggle_todo_completed_url" %}">Refresh 🔄</button>
+
         </div>
 
         <form method="post">
@@ -21,7 +27,7 @@
         <div class="task-list">
         {% for todo in todos %}
             <div class="task-item">
-                <input type="checkbox" class="checkbox">
+                <input type="checkbox" data-todo-id="{{ todo.id }}" class="checkbox">
                 <span title="{{ todo.description }}">{{ todo.title }}</span>
 
                 <div class="actions">

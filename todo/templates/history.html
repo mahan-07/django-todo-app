@@ -10,8 +10,13 @@
         </form>
         {% for todo in todos %}
             <div class="task-item">
+                {% if todo.is_completed %}
+                <span title="{{ todo.description }}"
+                 style="text-decoration: line-through; text-decoration-color: red; color: #c800ff;"
+                >{{ todo.title }}</span>
+                {% else %}
                 <span title="{{ todo.description }}">{{ todo.title }}</span>
-
+                {% endif %}
                 <div class="actions">
                     <a href="#" class="delete-btn" data-todo-id="{{ todo.id }}" data-taggle-delete-url={% url "taggle_delete" %}><img width="35" src="{% static 'img/delete.svg' %}" alt="❌"></a>
                 </div>

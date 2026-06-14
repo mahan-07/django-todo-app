@@ -5,6 +5,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('taggle_soft_delete', views.taggle_soft_delete, name='taggle_soft_delete'),
     path('taggle_todo_add', views.taggle_todo_add, name='taggle_todo_add'),
+    path('taggle_todo_completed_url', views.taggle_todo_completed_url, name='taggle_todo_completed_url'),
     path('taggle_delete', views.taggle_delete, name='taggle_delete'),
     path('edit/<int:pk>/', views.edit, name='edit'),
     path('history/', views.history, name='history'),

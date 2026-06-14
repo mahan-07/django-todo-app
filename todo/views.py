@@ -20,17 +20,6 @@ def home(request):
     context = {"todos": todos}
     return render(request, 'index.html', context)
 
-def taggle_soft_delete(request):
-    if request.method != "POST":
-        return JsonResponse({"error":"POST required"}, status=405)
-    
-    todo_id = request.POST.get('todo_id')
-    todo = get_object_or_404(Todo, id=todo_id,user=request.user)
-
-    todo.is_soft_deleted = True
-    todo.save()
-    return JsonResponse({"status":"ok"})
-
 def edit(request, pk):
     todo = get_object_or_404(Todo, pk = pk)
     form = TodoEditForm(instance=todo)
@@ -53,6 +42,16 @@ def history(request):
     context = {"todos":todos}
     return render(request, "history.html", context)
 
+def taggle_soft_delete(request):
+    if request.method != "POST":
+        return JsonResponse({"error":"POST required"}, status=405)
+    
+    todo_id = request.POST.get('todo_id')
+    todo = get_object_or_404(Todo, id=todo_id,user=request.user)
+
+    todo.is_soft_deleted = True
+    todo.save()
+    return JsonResponse({"status":"ok"})
 
 def taggle_delete(request):
     if request.method != "POST":
@@ -76,3 +75,16 @@ def taggle_todo_add(request):
     
     return JsonResponse({"status":"errore"})
 
+def taggle_todo_completed_url(request):
+    if request.method != 'POST':
+        return JsonResponse({"error":"POST required"}, status=405)
+    
+    todo_ids = request.POST.get('todo_ids', '').split(',')
+
+    for id in todo_ids:
+        todo = get_object_or_404(Todo, id=int(id))
+        todo.is_completed = True
+        todo.is_soft_deleted = True
+        todo.save()
+
+    return JsonResponse({'status':'ok'})

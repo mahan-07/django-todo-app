@@ -74,7 +74,33 @@ document.addEventListener('change', function (e) {
 
     if (checkbox.checked) {
         title.style.textDecoration = 'line-through';
+        title.style.textDecorationColor = 'red';
+        title.style.color = '#c800ff';
     } else {
+        title.style.color = 'black';
         title.style.textDecoration = 'none';
     }
+});
+
+document.addEventListener('click',async function (e) {
+    const btn = e.target.closest('.refresh-btn');
+    if (!btn) return;
+
+    const completedTodos = [];
+    document.querySelectorAll('.checkbox').forEach(chb => {
+        if(chb.checked){
+            const todo_id = chb.dataset.todoId;
+            completedTodos.push(todo_id);
+        };
+    });
+
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    const taggle_todo_completed_url = btn.dataset.taggleTodoCompletedUrl;
+    console.log(completedTodos);
+    console.log(taggle_todo_completed_url);
+    const response = await fetch(taggle_todo_completed_url, {method:"POST", headers:{"X-CSRFToken":csrftoken}, body:new URLSearchParams({todo_ids:completedTodos})});
+    const data = await response.json();
+    if(data.status === "ok"){this.location.reload()};
+
+
 });
